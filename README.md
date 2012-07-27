@@ -1,14 +1,14 @@
 Sassifier
 =========
 
-Leverages the [SassAndCoffee library]("https://github.com/xpaulbettsx/SassAndCoffee") for a standalone executable, which can be used as a 3rd-party compiler.
+Leverages the [SassAndCoffee library](https://github.com/xpaulbettsx/SassAndCoffee) for a standalone executable, which can be used as a 3rd-party compiler.
 
-See also [blog post]("http://drzaus.com/snippet/standalone-scss-compiler-for-sass-in-sublime-text-2").
+See also [blog post](http://drzaus.com/snippet/standalone-scss-compiler-for-sass-in-sublime-text-2).
 
 Purpose
 =======
 
-To use in [Sublime Text editor]("http://www.sublimetext.com/") with SASS Build System.  Here because I found someone else who asked for it - see [original issue from source]("https://github.com/xpaulbettsx/SassAndCoffee/issues/44").
+To use in [Sublime Text editor](http://www.sublimetext.com/) with SASS Build System.  Here because I found someone else who asked for it - see [original issue from source](https://github.com/xpaulbettsx/SassAndCoffee/issues/44).
 
 
 Usage
@@ -36,4 +36,4 @@ Create a new Build System:
 
 Save as `\Your Sublime Folder\Data\Packages\Sass\SASS (Windows).sublime-build`.
 
-Best when used in conjunction with a [SASS syntax highlighter]("https://github.com/nathos/sass-textmate-bundle").
+Best when used in conjunction with a [SASS syntax highlighter](https://github.com/nathos/sass-textmate-bundle).
