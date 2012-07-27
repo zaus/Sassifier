@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SassAndCoffee.AspNet</name>
+    </assembly>
+    <members>
+        <member name="T:SassAndCoffee.AspNet.JavaScriptInterceptorModule">
+            <summary>
+            Conditionally handles .js requests with the combine + coffeescript + uglify content pipeline.
+            </summary>
+        </member>
+        <member name="T:SassAndCoffee.AspNet.PathBasedHandlerRemapper">
+            <summary>
+            An HttpModule that will conditionally handle requests for files with certain extensions.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.AspNet.PathBasedHandlerRemapper.#ctor(System.String,SassAndCoffee.Core.IContentTransform[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SassAndCoffee.AspNet.PathBasedHandlerRemapper"/> class.
+            </summary>
+            <param name="handledExtension">The handled extension.  Include the '.': ".css"</param>
+            <param name="transformations">The transformations to apply in the content pipeline.</param>
+        </member>
+        <member name="M:SassAndCoffee.AspNet.PathBasedHandlerRemapper.Init(System.Web.HttpApplication)">
+            <summary>
+            Initializes a module and prepares it to handle requests.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to
+            the methods, properties, and events common to all application objects within an ASP.NET application</param>
+        </member>
+        <member name="M:SassAndCoffee.AspNet.PathBasedHandlerRemapper.ConditionallyRemapHandler(System.Object,System.EventArgs)">
+            <summary>
+            Conditionally remaps the handler for the current request if the requested file
+            * Does not exist
+            * Matches the handled extension
+            </summary>
+            <param name="sender">The HttpApplication.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:SassAndCoffee.AspNet.PathBasedHandlerRemapper.Dispose">
+            <summary>
+            Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.AspNet.PathBasedHandlerRemapper.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c>
+            to release only unmanaged resources.</param>
+        </member>
+        <member name="T:SassAndCoffee.AspNet.SassInterceptorModule">
+            <summary>
+            Conditionally handles .css requests with the Sass content pipeline.
+            </summary>
+        </member>
+    </members>
+</doc>

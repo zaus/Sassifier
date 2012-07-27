@@ -1,0 +1,1207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SassAndCoffee.JavaScript</name>
+    </assembly>
+    <members>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException"/> class.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException"/> class.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="info"/> parameter is null.
+              </exception>
+              
+            <exception cref="T:System.Runtime.Serialization.SerializationException">
+            The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
+              </exception>
+        </member>
+        <member name="P:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException.SourceContext">
+            <summary>
+            Gets or sets the application specific source context.
+            </summary>
+        </member>
+        <member name="P:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException.LineNumber">
+            <summary>
+            Gets or sets the line number on which the error occurred.
+            </summary>
+        </member>
+        <member name="P:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException.Column">
+            <summary>
+            Gets or sets the column on which the error occurred..
+            </summary>
+        </member>
+        <member name="P:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException.ErrorCode">
+            <summary>
+            Gets or sets the error code.
+            </summary>
+        </member>
+        <member name="P:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException.LineContent">
+            <summary>
+            Gets or sets the content of the line on which the error occurred..
+            </summary>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParseWrapper">
+            <summary>
+            If the Windows Script engine allows raw text code scriptlets to be added to the script
+            or allows expression text to be evaluated at run time, it implements the
+            IActiveScriptParse interface. For interpreted scripting languages that have no
+            independent authoring environment, such as VBScript, this provides an alternate
+            mechanism (other than IPersist*) to get script code into the scripting engine, and
+            to attach script fragments to various object events.
+            </summary>
+            <remarks>
+            Before the scripting engine can be used, one of the following methods must be called
+            : IPersist*::Load, IPersist*::InitNew, or IActiveScriptParse::InitNew. The semantics
+            of this method are identical to IPersistStreamInit::InitNew, in that this method tells
+            the scripting engine to initialize itself. Note that it is not valid to call both
+            IPersist*::InitNew or IActiveScriptParse::InitNew and IPersist*::Load, nor is it valid
+            to call IPersist*::InitNew, IActiveScriptParse::InitNew, or IPersist*::Load more
+            than once.
+            </remarks>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParseWrapper.InitNew">
+            <summary>
+            Initializes the scripting engine.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParseWrapper.AddScriptlet(System.String,System.String,System.String,System.String,System.String,System.String,System.IntPtr,System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptTextFlags)">
+            <summary>
+            Adds a code scriptlet to the script. This method is used in environments where the
+            persistent state of the script is intertwined with the host document and the host
+            is responsible for restoring the script, rather than through an IPersist* interface.
+            The primary examples are HTML scripting languages that allow scriptlets of code
+            embedded in the HTML document to be attached to intrinsic events (for instance,
+            ONCLICK="button1.text='Exit'").
+            </summary>
+            <param name="defaultName">The default name to associate with the scriptlet. If the
+            scriptlet does not contain naming information (as in the ONCLICK example above),
+            this name will be used to identify the scriptlet. If this parameter is NULL, the
+            scripting engine manufactures a unique name, if necessary.</param>
+            <param name="code">The scriptlet text to add. The interpretation of this string
+            depends on the scripting language.</param>
+            <param name="itemName">The item name associated with this scriptlet. This parameter,
+            in addition to pstrSubItemName, identifies the object for which the scriptlet is
+            an event handler.</param>
+            <param name="subItemName">The name of a subobject of the named item with which this
+            scriptlet is associated; this name must be found in the named item's type
+            information. This parameter is NULL if the scriptlet is to be associated with the
+            named item instead of a subitem. This parameter, in addition to pstrItemName,
+            identifies the specific object for which the scriptlet is an event handler.</param>
+            <param name="eventName">The name of the event for which the scriptlet is an event
+            handler.</param>
+            <param name="delimiter">The end-of-scriptlet delimiter. When the pstrCode parameter
+            is parsed from a stream of text, the host typically uses a delimiter, such as two
+            single quotation marks (''), to detect the end of the scriptlet. This parameter
+            specifies the delimiter that the host used, allowing the scripting engine to
+            provide some conditional primitive preprocessing (for example, replacing a single
+            quotation mark ['] with two single quotation marks for use as a delimiter).
+            Exactly how (and if) the scripting engine makes use of this information depends
+            on the scripting engine. Set this parameter to NULL if the host did not use a
+            delimiter to mark the end of the scriptlet.</param>
+            <param name="sourceContextCookie">Application-defined value that is used for
+            debugging purposes.</param>
+            <param name="startingLineNumber">Zero-based value that specifies which line the
+            parsing will begin at.</param>
+            <param name="flags">Flags associated with the scriptlet.</param>
+            <returns>Actual name used to identify the scriptlet. This is to be in
+            order of preference: a name explicitly specified in the scriptlet text, the
+            default name provided in pstrDefaultName, or a unique name synthesized by the
+            scripting engine.</returns>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParseWrapper.ParseScriptText(System.String,System.String,System.Object,System.String,System.IntPtr,System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptTextFlags)">
+            <summary>
+            Parses the given code scriptlet, adding declarations into the namespace and
+            evaluating code as appropriate.
+            </summary>
+            <param name="code">The scriptlet text to evaluate. The interpretation of this
+            string depends on the scripting language.</param>
+            <param name="itemName">The item name that gives the context in which the
+            scriptlet is to be evaluated. If this parameter is NULL, the code is evaluated
+            in the scripting engine's global context.</param>
+            <param name="context">The context object. This object is reserved for use in a
+            debugging environment, where such a context may be provided by the debugger to
+            represent an active run-time context. If this parameter is NULL, the engine
+            uses pstrItemName to identify the context.</param>
+            <param name="delimiter">The end-of-scriptlet delimiter. When pstrCode is parsed
+            from a stream of text, the host typically uses a delimiter, such as two single
+            quotation marks (''), to detect the end of the scriptlet. This parameter specifies
+            the delimiter that the host used, allowing the scripting engine to provide some
+            conditional primitive preprocessing (for example, replacing a single quotation
+            mark ['] with two single quotation marks for use as a delimiter). Exactly how
+            (and if) the scripting engine makes use of this information depends on the
+            scripting engine. Set this parameter to NULL if the host did not use a delimiter
+            to mark the end of the scriptlet.</param>
+            <param name="sourceContextCookie">Application-defined value that is used for
+            debugging purposes.</param>
+            <param name="startingLineNumber">Zero-based value that specifies which line the
+            parsing will begin at.</param>
+            <param name="flags">Flags associated with the scriptlet.</param>
+            <returns>The results of scriptlet processing, or NULL if the caller
+            expects no result (that is, the SCRIPTTEXT_ISEXPRESSION value is not set).</returns>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptParseWrapper.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptParseWrapper"/> class.
+            </summary>
+            <param name="parser">The parser.  Must implement IActiveScriptParse32 or IActiveScriptParse64.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptParseWrapper.InitNew">
+            <summary>
+            Initializes the scripting engine.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptParseWrapper.AddScriptlet(System.String,System.String,System.String,System.String,System.String,System.String,System.IntPtr,System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptTextFlags)">
+            <summary>
+            Adds a code scriptlet to the script. This method is used in environments where the
+            persistent state of the script is intertwined with the host document and the host
+            is responsible for restoring the script, rather than through an IPersist* interface.
+            The primary examples are HTML scripting languages that allow scriptlets of code
+            embedded in the HTML document to be attached to intrinsic events (for instance,
+            ONCLICK="button1.text='Exit'").
+            </summary>
+            <param name="defaultName">The default name to associate with the scriptlet. If the
+            scriptlet does not contain naming information (as in the ONCLICK example above),
+            this name will be used to identify the scriptlet. If this parameter is NULL, the
+            scripting engine manufactures a unique name, if necessary.</param>
+            <param name="code">The scriptlet text to add. The interpretation of this string
+            depends on the scripting language.</param>
+            <param name="itemName">The item name associated with this scriptlet. This parameter,
+            in addition to pstrSubItemName, identifies the object for which the scriptlet is
+            an event handler.</param>
+            <param name="subItemName">The name of a subobject of the named item with which this
+            scriptlet is associated; this name must be found in the named item's type
+            information. This parameter is NULL if the scriptlet is to be associated with the
+            named item instead of a subitem. This parameter, in addition to pstrItemName,
+            identifies the specific object for which the scriptlet is an event handler.</param>
+            <param name="eventName">The name of the event for which the scriptlet is an event
+            handler.</param>
+            <param name="delimiter">The end-of-scriptlet delimiter. When the pstrCode parameter
+            is parsed from a stream of text, the host typically uses a delimiter, such as two
+            single quotation marks (''), to detect the end of the scriptlet. This parameter
+            specifies the delimiter that the host used, allowing the scripting engine to
+            provide some conditional primitive preprocessing (for example, replacing a single
+            quotation mark ['] with two single quotation marks for use as a delimiter).
+            Exactly how (and if) the scripting engine makes use of this information depends
+            on the scripting engine. Set this parameter to NULL if the host did not use a
+            delimiter to mark the end of the scriptlet.</param>
+            <param name="sourceContextCookie">Application-defined value that is used for
+            debugging purposes.</param>
+            <param name="startingLineNumber">Zero-based value that specifies which line the
+            parsing will begin at.</param>
+            <param name="flags">Flags associated with the scriptlet.</param>
+            <returns>
+            Actual name used to identify the scriptlet. This is to be in
+            order of preference: a name explicitly specified in the scriptlet text, the
+            default name provided in pstrDefaultName, or a unique name synthesized by the
+            scripting engine.
+            </returns>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptParseWrapper.ParseScriptText(System.String,System.String,System.Object,System.String,System.IntPtr,System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptTextFlags)">
+            <summary>
+            Parses the given code scriptlet, adding declarations into the namespace and
+            evaluating code as appropriate.
+            </summary>
+            <param name="code">The scriptlet text to evaluate. The interpretation of this
+            string depends on the scripting language.</param>
+            <param name="itemName">The item name that gives the context in which the
+            scriptlet is to be evaluated. If this parameter is NULL, the code is evaluated
+            in the scripting engine's global context.</param>
+            <param name="context">The context object. This object is reserved for use in a
+            debugging environment, where such a context may be provided by the debugger to
+            represent an active run-time context. If this parameter is NULL, the engine
+            uses pstrItemName to identify the context.</param>
+            <param name="delimiter">The end-of-scriptlet delimiter. When pstrCode is parsed
+            from a stream of text, the host typically uses a delimiter, such as two single
+            quotation marks (''), to detect the end of the scriptlet. This parameter specifies
+            the delimiter that the host used, allowing the scripting engine to provide some
+            conditional primitive preprocessing (for example, replacing a single quotation
+            mark ['] with two single quotation marks for use as a delimiter). Exactly how
+            (and if) the scripting engine makes use of this information depends on the
+            scripting engine. Set this parameter to NULL if the host did not use a delimiter
+            to mark the end of the scriptlet.</param>
+            <param name="sourceContextCookie">Application-defined value that is used for
+            debugging purposes.</param>
+            <param name="startingLineNumber">Zero-based value that specifies which line the
+            parsing will begin at.</param>
+            <param name="flags">Flags associated with the scriptlet.</param>
+            <returns>
+            The results of scriptlet processing, or NULL if the caller
+            expects no result (that is, the SCRIPTTEXT_ISEXPRESSION value is not set).
+            </returns>
+        </member>
+        <member name="P:SassAndCoffee.JavaScript.ActiveScript.ActiveScriptParseWrapper.LastException">
+            <summary>
+            Gets the last COM exception.
+            </summary>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSite">
+            <summary>
+            Implemented by the host to create a site for the Windows Script engine. Usually, this site
+            will be associated with the container of all the objects that are visible to the script
+            (for example, the ActiveX Controls). Typically, this container will correspond to the document
+            or page being viewed. Microsoft Internet Explorer, for example, would create such a container
+            for each HTML page being displayed. Each ActiveX control (or other automation object) on the
+            page, and the scripting engine itself, would be enumerable within this container.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSite.GetLCID(System.Int32@)">
+            <summary>
+            Retrieves the locale identifier associated with the host's user interface. The scripting
+            engine uses the identifier to ensure that error strings and other user-interface elements
+            generated by the engine appear in the appropriate language.
+            </summary>
+            <param name="lcid">A variable that receives the locale identifier for user-interface
+            elements displayed by the scripting engine.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSite.GetItemInfo(System.String,SassAndCoffee.JavaScript.ActiveScript.ScriptInfoFlags,System.Object@,System.IntPtr@)">
+            <summary>
+            Allows the scripting engine to obtain information about an item added with the
+            IActiveScript.AddNamedItem method.
+            </summary>
+            <param name="name">The name associated with the item, as specified in the
+            IActiveScript.AddNamedItem method.</param>
+            <param name="returnMask">A bit mask specifying what information about the item should be
+            returned. The scripting engine should request the minimum amount of information possible
+            because some of the return parameters (for example, ITypeInfo) can take considerable
+            time to load or generate.</param>
+            <param name="item">A variable that receives a pointer to the IUnknown interface associated
+            with the given item. The scripting engine can use the IUnknown.QueryInterface method to
+            obtain the IDispatch interface for the item. This parameter receives null if returnMask
+            does not include the ScriptInfo.IUnknown value. Also, it receives null if there is no
+            object associated with the item name; this mechanism is used to create a simple class when
+            the named item was added with the ScriptItem.CodeOnly flag set in the
+            IActiveScript.AddNamedItem method.</param>
+            <param name="typeInfo">A variable that receives a pointer to the ITypeInfo interface
+            associated with the item. This parameter receives null if returnMask does not include the
+            ScriptInfo.ITypeInfo value, or if type information is not available for this item. If type
+            information is not available, the object cannot source events, and name binding must be
+            realized with the IDispatch.GetIDsOfNames method. Note that the ITypeInfo interface
+            retrieved describes the item's coclass (TKIND_COCLASS) because the object may support
+            multiple interfaces and event interfaces. If the item supports the IProvideMultipleTypeInfo
+            interface, the ITypeInfo interface retrieved is the same as the index zero ITypeInfo that
+            would be obtained using the IProvideMultipleTypeInfo.GetInfoOfIndex method.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSite.GetDocVersionString(System.String@)">
+            <summary>
+            Retrieves a host-defined string that uniquely identifies the current document version. If
+            the related document has changed outside the scope of Windows Script (as in the case of an
+            HTML page being edited with Notepad), the scripting engine can save this along with its
+            persisted state, forcing a recompile the next time the script is loaded.
+            </summary>
+            <param name="versionString">The host-defined document version string.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSite.OnScriptTerminate(System.Object,System.Runtime.InteropServices.ComTypes.EXCEPINFO)">
+            <summary>
+            Informs the host that the script has completed execution.
+            </summary>
+            <param name="result">A variable that contains the script result, or null if the script
+            produced no result.</param>
+            <param name="exceptionInfo">Contains exception information generated when the script
+            terminated, or null if no exception was generated.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSite.OnStateChange(SassAndCoffee.JavaScript.ActiveScript.ScriptState)">
+            <summary>
+            Informs the host that the scripting engine has changed states.
+            </summary>
+            <param name="scriptState">Indicates the new script state.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSite.OnScriptError(SassAndCoffee.JavaScript.ActiveScript.IActiveScriptError)">
+            <summary>
+            Informs the host that an execution error occurred while the engine was running the script.
+            </summary>
+            <param name="scriptError">A host can use this interface to obtain information about the
+            execution error.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSite.OnEnterScript">
+            <summary>
+            Informs the host that the scripting engine has begun executing the script code.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSite.OnLeaveScript">
+            <summary>
+            Informs the host that the scripting engine has returned from executing script code.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite"/> class.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite"/> class.
+            </summary>
+            <param name="documentVersion">The host-defined document version string.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.GetLCID(System.Int32@)">
+            <summary>
+            Retrieves the locale identifier associated with the host's user interface. The scripting
+            engine uses the identifier to ensure that error strings and other user-interface elements
+            generated by the engine appear in the appropriate language.
+            </summary>
+            <param name="lcid">A variable that receives the locale identifier for user-interface
+            elements displayed by the scripting engine.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.GetItemInfo(System.String,SassAndCoffee.JavaScript.ActiveScript.ScriptInfoFlags,System.Object@,System.IntPtr@)">
+            <summary>
+            Allows the scripting engine to obtain information about an item added with the
+            IActiveScript.AddNamedItem method.
+            </summary>
+            <param name="name">The name associated with the item, as specified in the
+            IActiveScript.AddNamedItem method.</param>
+            <param name="returnMask">A bit mask specifying what information about the item should be
+            returned. The scripting engine should request the minimum amount of information possible
+            because some of the return parameters (for example, ITypeInfo) can take considerable
+            time to load or generate.</param>
+            <param name="item">A variable that receives a pointer to the IUnknown interface associated
+            with the given item. The scripting engine can use the IUnknown.QueryInterface method to
+            obtain the IDispatch interface for the item. This parameter receives null if returnMask
+            does not include the ScriptInfo.IUnknown value. Also, it receives null if there is no
+            object associated with the item name; this mechanism is used to create a simple class when
+            the named item was added with the ScriptItem.CodeOnly flag set in the
+            IActiveScript.AddNamedItem method.</param>
+            <param name="typeInfo">A variable that receives a pointer to the ITypeInfo interface
+            associated with the item. This parameter receives null if returnMask does not include the
+            ScriptInfo.ITypeInfo value, or if type information is not available for this item. If type
+            information is not available, the object cannot source events, and name binding must be
+            realized with the IDispatch.GetIDsOfNames method. Note that the ITypeInfo interface
+            retrieved describes the item's coclass (TKIND_COCLASS) because the object may support
+            multiple interfaces and event interfaces. If the item supports the IProvideMultipleTypeInfo
+            interface, the ITypeInfo interface retrieved is the same as the index zero ITypeInfo that
+            would be obtained using the IProvideMultipleTypeInfo.GetInfoOfIndex method.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.GetItem(System.String)">
+            <summary>
+            Allows the scripting engine to obtain information about an item added with the
+            IActiveScript.AddNamedItem method.
+            </summary>
+            <param name="name">The name associated with the item, as specified in the
+            IActiveScript.AddNamedItem method.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.GetTypeInfo(System.String)">
+            <summary>
+            Allows the scripting engine to obtain information about an item added with the
+            IActiveScript.AddNamedItem method.  Gets the COM ITypeInfo.
+            </summary>
+            <param name="name">The name associated with the item, as specified in the
+            IActiveScript.AddNamedItem method.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.GetDocVersionString(System.String@)">
+            <summary>
+            Retrieves a host-defined string that uniquely identifies the current document version. If
+            the related document has changed outside the scope of Windows Script (as in the case of an
+            HTML page being edited with Notepad), the scripting engine can save this along with its
+            persisted state, forcing a recompile the next time the script is loaded.
+            </summary>
+            <param name="versionString">The host-defined document version string.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.OnScriptTerminate(System.Object,System.Runtime.InteropServices.ComTypes.EXCEPINFO)">
+            <summary>
+            Informs the host that the script has completed execution.
+            </summary>
+            <param name="result">A variable that contains the script result, or null if the script
+            produced no result.</param>
+            <param name="exceptionInfo">Contains exception information generated when the script
+            terminated, or null if no exception was generated.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.OnStateChange(SassAndCoffee.JavaScript.ActiveScript.ScriptState)">
+            <summary>
+            Informs the host that the scripting engine has changed states.
+            </summary>
+            <param name="scriptState">Indicates the new script state.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.OnScriptError(SassAndCoffee.JavaScript.ActiveScript.IActiveScriptError)">
+            <summary>
+            Informs the host that an execution error occurred while the engine was running the script.
+            </summary>
+            <param name="scriptError">A host can use this interface to obtain information about the
+            execution error.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.GetAndResetLastException">
+            <summary>
+            Gets and resets the last exception.  Returns null for none.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.OnScriptError(SassAndCoffee.JavaScript.ActiveScript.ActiveScriptException)">
+            <summary>
+            Informs the host that an execution error occurred while the engine was running the script.
+            </summary>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.OnEnterScript">
+            <summary>
+            Informs the host that the scripting engine has begun executing the script code.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.OnLeaveScript">
+            <summary>
+            Informs the host that the scripting engine has returned from executing script code.
+            </summary>
+        </member>
+        <member name="P:SassAndCoffee.JavaScript.ActiveScript.BaseActiveScriptSite.DocumentVersion">
+            <summary>
+            Gets or sets the host-defined document version string.
+            </summary>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.IActiveScript">
+            <summary>
+            Provides the methods necessary to initialize the scripting engine. The scripting engine must
+            implement the IActiveScript interface.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.SetScriptSite(SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSite)">
+            <summary>
+            Informs the scripting engine of the IActiveScriptSite interface site provided by the host.
+            Call this method before any other IActiveScript interface methods is used.
+            </summary>
+            <param name="scriptSite">The host-supplied script site to be associated with this instance
+            of the scripting engine. The site must be uniquely assigned to this scripting engine
+            instance; it cannot be shared with other scripting engines.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.GetScriptSite(System.Guid,SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSite@)">
+            <summary>
+            Retrieves the site object associated with the Windows Script engine.
+            </summary>
+            <param name="iid">Identifier of the requested interface.</param>
+            <param name="siteObject">The host's site object.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.SetScriptState(SassAndCoffee.JavaScript.ActiveScript.ScriptState)">
+            <summary>
+            Puts the scripting engine into the given state. This method can be called from non-base
+            threads without resulting in a non-base callout to host objects or to the IActiveScriptSite
+            interface.
+            </summary>
+            <param name="scriptState">Sets the scripting engine to the given state.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.GetScriptState(SassAndCoffee.JavaScript.ActiveScript.ScriptState@)">
+            <summary>
+            Retrieves the current state of the scripting engine. This method can be called from
+            non-base threads without resulting in a non-base callout to host objects or to the
+            IActiveScriptSite interface.
+            </summary>
+            <param name="scriptState">The value indicates the current state of the scripting engine
+            associated with the calling thread.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.Close">
+            <summary>
+            Causes the scripting engine to abandon any currently loaded script, lose its state, and
+            release any interface pointers it has to other objects, thus entering a closed state.
+            Event sinks, immediately executed script text, and macro invocations that are already in
+            progress are completed before the state changes (use IActiveScript::InterruptScriptThread to
+            cancel a running script thread). This method must be called by the creating host before the
+            interface is released to prevent circular reference problems.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.AddNamedItem(System.String,SassAndCoffee.JavaScript.ActiveScript.ScriptItemFlags)">
+            <summary>
+            Adds the name of a root-level item to the scripting engine's name space. A root-level item
+            is an object with properties and methods, an event source, or all three.
+            </summary>
+            <param name="name">The name of the item as viewed from the script. The name must be unique
+            and persistable.</param>
+            <param name="itemFlags">Flags associated with an item.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.AddTypeLib(System.Guid,System.UInt32,System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptTypeLibFlags)">
+            <summary>
+            Adds a type library to the name space for the script. This is similar to the #include
+            directive in C/C++. It allows a set of predefined items such as class definitions, typedefs,
+            and named constants to be added to the run-time environment available to the script.
+            </summary>
+            <param name="clsId">CLSID of the type library to add.</param>
+            <param name="majorVersion">Major version number.</param>
+            <param name="minorVersion">Minor version number.</param>
+            <param name="typeLibFlags">Option flags.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.GetScriptDispatch(System.String,System.Object@)">
+            <summary>
+            Retrieves the IDispatch interface for the methods and properties associated with the
+            currently running script.
+            </summary>
+            <param name="itemName">The name of the item for which the caller needs the associated
+            dispatch object. If this parameter is NULL, the dispatch object contains as its members
+            all of the global methods and properties defined by the script. Through the IDispatch
+            interface and the associated ITypeInfo interface, the host can invoke script methods
+            or view and modify script variables.</param>
+            <param name="dispatch">The object associated with the script's global methods and
+            properties. If the scripting engine does not support such an object, NULL is returned.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.GetCurrentScriptThreadID(System.UInt32@)">
+            <summary>
+            Retrieves a scripting-engine-defined identifier for the currently executing thread.
+            The identifier can be used in subsequent calls to script thread execution-control
+            methods such as the IActiveScript.InterruptScriptThread method.
+            </summary>
+            <param name="threadId">The script thread identifier associated with the current thread.
+            The interpretation of this identifier is left to the scripting engine, but it can be
+            just a copy of the Windows thread identifier. If the Win32 thread terminates, this
+            identifier becomes unassigned and can subsequently be assigned to another thread.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.GetScriptThreadID(System.UInt32,System.UInt32@)">
+            <summary>
+            Retrieves a scripting-engine-defined identifier for the thread associated with the
+            given Win32 thread.
+            </summary>
+            <param name="win32ThreadId">Thread identifier of a running Win32 thread in the
+            current process. Use the IActiveScript::GetCurrentScriptThreadID function to
+            retrieve the thread identifier of the currently executing thread.</param>
+            <param name="scriptThreadId">The script thread identifier associated with the given
+            Win32 thread. The interpretation of this identifier is left to the scripting engine,
+            but it can be just a copy of the Windows thread identifier. Note that if the Win32
+            thread terminates, this identifier becomes unassigned and may subsequently be
+            assigned to another thread.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.GetScriptThreadState(System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptThreadState@)">
+            <summary>
+            Retrieves the current state of a script thread.
+            </summary>
+            <param name="scriptThreadId">Identifier of the thread for which the state is desired.</param>
+            <param name="threadState"></param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.InterruptScriptThread(System.UInt32,System.Runtime.InteropServices.ComTypes.EXCEPINFO,SassAndCoffee.JavaScript.ActiveScript.ScriptInterruptFlags)">
+            <summary>
+            Interrupts the execution of a running script thread (an event sink, an immediate
+            execution, or a macro invocation). This method can be used to terminate a script that
+            is stuck (for example, in an infinite loop). It can be called from non-base threads
+            without resulting in a non-base callout to host objects or to the IActiveScriptSite method.
+            </summary>
+            <param name="scriptThreadId">Identifier of the thread to interrupt, or one of the
+            special thread identifier values.</param>
+            <param name="exceptionInfo">The error information that should be reported to the aborted script.</param>
+            <param name="interruptFlags">Option flags associated with the interruption.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScript.Clone(SassAndCoffee.JavaScript.ActiveScript.IActiveScript@)">
+            <summary>
+            Clones the current scripting engine (minus any current execution state), returning
+            a loaded scripting engine that has no site in the current thread. The properties of
+            this new scripting engine will be identical to the properties the original scripting
+            engine would be in if it were transitioned back to the initialized state.
+            </summary>
+            <param name="script">The cloned scripting engine. The host must create a site and
+            call the IActiveScript.SetScriptSite method on the new scripting engine before it
+            will be in the initialized state and, therefore, usable.</param>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptError">
+            <summary>
+            An object implementing this interface is passed to the IActiveScriptSite.OnScriptError method
+            whenever the scripting engine encounters an unhandled error. The host then calls methods on
+            this object to obtain information about the error that occurred.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptError.GetExceptionInfo(System.Runtime.InteropServices.ComTypes.EXCEPINFO@)">
+            <summary>
+            Retrieves information about an error that occurred while the scripting engine was running
+            a script.
+            </summary>
+            <param name="exceptionInfo">An EXCEPINFO structure that receives error information.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptError.GetSourcePosition(System.UInt32@,System.UInt32@,System.Int32@)">
+            <summary>
+            Retrieves the location in the source code where an error occurred while the scripting engine
+            was running a script.
+            </summary>
+            <param name="sourceContext">A cookie that identifies the context. The interpretation of
+            this parameter depends on the host application.</param>
+            <param name="lineNumber">The line number in the source file where the error occurred.</param>
+            <param name="characterPosition">The character position in the line where the error occurred.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptError.GetSourceLineText(System.String@)">
+            <summary>
+            Retrieves the line in the source file where an error occurred while a scripting engine
+            was running a script.
+            </summary>
+            <param name="sourceLine">The line of source code in which the error occurred.</param>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParse32">
+            <summary>
+            If the Windows Script engine allows raw text code scriptlets to be added to the script
+            or allows expression text to be evaluated at run time, it implements the
+            IActiveScriptParse interface. For interpreted scripting languages that have no
+            independent authoring environment, such as VBScript, this provides an alternate
+            mechanism (other than IPersist*) to get script code into the scripting engine, and
+            to attach script fragments to various object events.
+            </summary>
+            <remarks>
+            Before the scripting engine can be used, one of the following methods must be called
+            : IPersist*::Load, IPersist*::InitNew, or IActiveScriptParse::InitNew. The semantics
+            of this method are identical to IPersistStreamInit::InitNew, in that this method tells
+            the scripting engine to initialize itself. Note that it is not valid to call both
+            IPersist*::InitNew or IActiveScriptParse::InitNew and IPersist*::Load, nor is it valid
+            to call IPersist*::InitNew, IActiveScriptParse::InitNew, or IPersist*::Load more
+            than once.
+            </remarks>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParse32.InitNew">
+            <summary>
+            Initializes the scripting engine.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParse32.AddScriptlet(System.String,System.String,System.String,System.String,System.String,System.String,System.IntPtr,System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptTextFlags,System.String@,System.Runtime.InteropServices.ComTypes.EXCEPINFO@)">
+            <summary>
+            Adds a code scriptlet to the script. This method is used in environments where the
+            persistent state of the script is intertwined with the host document and the host
+            is responsible for restoring the script, rather than through an IPersist* interface.
+            The primary examples are HTML scripting languages that allow scriptlets of code
+            embedded in the HTML document to be attached to intrinsic events (for instance,
+            ONCLICK="button1.text='Exit'").
+            </summary>
+            <param name="defaultName">The default name to associate with the scriptlet. If the
+            scriptlet does not contain naming information (as in the ONCLICK example above),
+            this name will be used to identify the scriptlet. If this parameter is NULL, the
+            scripting engine manufactures a unique name, if necessary.</param>
+            <param name="code">The scriptlet text to add. The interpretation of this string
+            depends on the scripting language.</param>
+            <param name="itemName">The item name associated with this scriptlet. This parameter,
+            in addition to pstrSubItemName, identifies the object for which the scriptlet is
+            an event handler.</param>
+            <param name="subItemName">The name of a subobject of the named item with which this
+            scriptlet is associated; this name must be found in the named item's type
+            information. This parameter is NULL if the scriptlet is to be associated with the
+            named item instead of a subitem. This parameter, in addition to pstrItemName,
+            identifies the specific object for which the scriptlet is an event handler.</param>
+            <param name="eventName">The name of the event for which the scriptlet is an event
+            handler.</param>
+            <param name="delimiter">The end-of-scriptlet delimiter. When the pstrCode parameter
+            is parsed from a stream of text, the host typically uses a delimiter, such as two
+            single quotation marks (''), to detect the end of the scriptlet. This parameter
+            specifies the delimiter that the host used, allowing the scripting engine to
+            provide some conditional primitive preprocessing (for example, replacing a single
+            quotation mark ['] with two single quotation marks for use as a delimiter).
+            Exactly how (and if) the scripting engine makes use of this information depends
+            on the scripting engine. Set this parameter to NULL if the host did not use a
+            delimiter to mark the end of the scriptlet.</param>
+            <param name="sourceContextCookie">Application-defined value that is used for
+            debugging purposes.</param>
+            <param name="startingLineNumber">Zero-based value that specifies which line the
+            parsing will begin at.</param>
+            <param name="flags">Flags associated with the scriptlet.</param>
+            <param name="name">Actual name used to identify the scriptlet. This is to be in
+            order of preference: a name explicitly specified in the scriptlet text, the
+            default name provided in pstrDefaultName, or a unique name synthesized by the
+            scripting engine.</param>
+            <param name="exceptionInfo">Exception information. This structure should be
+            filled in if DISP_E_EXCEPTION is returned.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParse32.ParseScriptText(System.String,System.String,System.Object,System.String,System.IntPtr,System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptTextFlags,System.Object@,System.Runtime.InteropServices.ComTypes.EXCEPINFO@)">
+            <summary>
+            Parses the given code scriptlet, adding declarations into the namespace and
+            evaluating code as appropriate.
+            </summary>
+            <param name="code">The scriptlet text to evaluate. The interpretation of this
+            string depends on the scripting language.</param>
+            <param name="itemName">The item name that gives the context in which the
+            scriptlet is to be evaluated. If this parameter is NULL, the code is evaluated
+            in the scripting engine's global context.</param>
+            <param name="context">The context object. This object is reserved for use in a
+            debugging environment, where such a context may be provided by the debugger to
+            represent an active run-time context. If this parameter is NULL, the engine
+            uses pstrItemName to identify the context.</param>
+            <param name="delimiter">The end-of-scriptlet delimiter. When pstrCode is parsed
+            from a stream of text, the host typically uses a delimiter, such as two single
+            quotation marks (''), to detect the end of the scriptlet. This parameter specifies
+            the delimiter that the host used, allowing the scripting engine to provide some 
+            conditional primitive preprocessing (for example, replacing a single quotation
+            mark ['] with two single quotation marks for use as a delimiter). Exactly how
+            (and if) the scripting engine makes use of this information depends on the
+            scripting engine. Set this parameter to NULL if the host did not use a delimiter
+            to mark the end of the scriptlet.</param>
+            <param name="sourceContextCookie">Application-defined value that is used for
+            debugging purposes.</param>
+            <param name="startingLineNumber">Zero-based value that specifies which line the
+            parsing will begin at.</param>
+            <param name="flags">Flags associated with the scriptlet.</param>
+            <param name="result">The results of scriptlet processing, or NULL if the caller
+            expects no result (that is, the SCRIPTTEXT_ISEXPRESSION value is not set).</param>
+            <param name="exceptionInfo">The exception information. This structure is filled
+            if IActiveScriptParse::ParseScriptText returns DISP_E_EXCEPTION.</param>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParse64">
+            <summary>
+            If the Windows Script engine allows raw text code scriptlets to be added to the script
+            or allows expression text to be evaluated at run time, it implements the
+            IActiveScriptParse interface. For interpreted scripting languages that have no
+            independent authoring environment, such as VBScript, this provides an alternate
+            mechanism (other than IPersist*) to get script code into the scripting engine, and
+            to attach script fragments to various object events.
+            </summary>
+            <remarks>
+            Before the scripting engine can be used, one of the following methods must be called
+            : IPersist*::Load, IPersist*::InitNew, or IActiveScriptParse::InitNew. The semantics
+            of this method are identical to IPersistStreamInit::InitNew, in that this method tells
+            the scripting engine to initialize itself. Note that it is not valid to call both
+            IPersist*::InitNew or IActiveScriptParse::InitNew and IPersist*::Load, nor is it valid
+            to call IPersist*::InitNew, IActiveScriptParse::InitNew, or IPersist*::Load more
+            than once.
+            </remarks>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParse64.InitNew">
+            <summary>
+            Initializes the scripting engine.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParse64.AddScriptlet(System.String,System.String,System.String,System.String,System.String,System.String,System.IntPtr,System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptTextFlags,System.String@,System.Runtime.InteropServices.ComTypes.EXCEPINFO@)">
+            <summary>
+            Adds a code scriptlet to the script. This method is used in environments where the
+            persistent state of the script is intertwined with the host document and the host
+            is responsible for restoring the script, rather than through an IPersist* interface.
+            The primary examples are HTML scripting languages that allow scriptlets of code
+            embedded in the HTML document to be attached to intrinsic events (for instance,
+            ONCLICK="button1.text='Exit'").
+            </summary>
+            <param name="defaultName">The default name to associate with the scriptlet. If the
+            scriptlet does not contain naming information (as in the ONCLICK example above),
+            this name will be used to identify the scriptlet. If this parameter is NULL, the
+            scripting engine manufactures a unique name, if necessary.</param>
+            <param name="code">The scriptlet text to add. The interpretation of this string
+            depends on the scripting language.</param>
+            <param name="itemName">The item name associated with this scriptlet. This parameter,
+            in addition to pstrSubItemName, identifies the object for which the scriptlet is
+            an event handler.</param>
+            <param name="subItemName">The name of a subobject of the named item with which this
+            scriptlet is associated; this name must be found in the named item's type
+            information. This parameter is NULL if the scriptlet is to be associated with the
+            named item instead of a subitem. This parameter, in addition to pstrItemName,
+            identifies the specific object for which the scriptlet is an event handler.</param>
+            <param name="eventName">The name of the event for which the scriptlet is an event
+            handler.</param>
+            <param name="delimiter">The end-of-scriptlet delimiter. When the pstrCode parameter
+            is parsed from a stream of text, the host typically uses a delimiter, such as two
+            single quotation marks (''), to detect the end of the scriptlet. This parameter
+            specifies the delimiter that the host used, allowing the scripting engine to
+            provide some conditional primitive preprocessing (for example, replacing a single
+            quotation mark ['] with two single quotation marks for use as a delimiter).
+            Exactly how (and if) the scripting engine makes use of this information depends
+            on the scripting engine. Set this parameter to NULL if the host did not use a
+            delimiter to mark the end of the scriptlet.</param>
+            <param name="sourceContextCookie">Application-defined value that is used for
+            debugging purposes.</param>
+            <param name="startingLineNumber">Zero-based value that specifies which line the
+            parsing will begin at.</param>
+            <param name="flags">Flags associated with the scriptlet.</param>
+            <param name="name">Actual name used to identify the scriptlet. This is to be in
+            order of preference: a name explicitly specified in the scriptlet text, the
+            default name provided in pstrDefaultName, or a unique name synthesized by the
+            scripting engine.</param>
+            <param name="exceptionInfo">Exception information. This structure should be
+            filled in if DISP_E_EXCEPTION is returned.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParse64.ParseScriptText(System.String,System.String,System.Object,System.String,System.IntPtr,System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptTextFlags,System.Object@,System.Runtime.InteropServices.ComTypes.EXCEPINFO@)">
+            <summary>
+            Parses the given code scriptlet, adding declarations into the namespace and
+            evaluating code as appropriate.
+            </summary>
+            <param name="code">The scriptlet text to evaluate. The interpretation of this
+            string depends on the scripting language.</param>
+            <param name="itemName">The item name that gives the context in which the
+            scriptlet is to be evaluated. If this parameter is NULL, the code is evaluated
+            in the scripting engine's global context.</param>
+            <param name="context">The context object. This object is reserved for use in a
+            debugging environment, where such a context may be provided by the debugger to
+            represent an active run-time context. If this parameter is NULL, the engine
+            uses pstrItemName to identify the context.</param>
+            <param name="delimiter">The end-of-scriptlet delimiter. When pstrCode is parsed
+            from a stream of text, the host typically uses a delimiter, such as two single
+            quotation marks (''), to detect the end of the scriptlet. This parameter specifies
+            the delimiter that the host used, allowing the scripting engine to provide some 
+            conditional primitive preprocessing (for example, replacing a single quotation
+            mark ['] with two single quotation marks for use as a delimiter). Exactly how
+            (and if) the scripting engine makes use of this information depends on the
+            scripting engine. Set this parameter to NULL if the host did not use a delimiter
+            to mark the end of the scriptlet.</param>
+            <param name="sourceContextCookie">Application-defined value that is used for
+            debugging purposes.</param>
+            <param name="startingLineNumber">Zero-based value that specifies which line the
+            parsing will begin at.</param>
+            <param name="flags">Flags associated with the scriptlet.</param>
+            <param name="result">The results of scriptlet processing, or NULL if the caller
+            expects no result (that is, the SCRIPTTEXT_ISEXPRESSION value is not set).</param>
+            <param name="exceptionInfo">The exception information. This structure is filled
+            if IActiveScriptParse::ParseScriptText returns DISP_E_EXCEPTION.</param>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParseProcedure32">
+            <summary>
+            If the Windows Script engine allows the source code text for procedures to be added to the script,
+            it implements the IActiveScriptParseProcedure interface. For interpreted scripting languages that
+            have no independent authoring environment, such as VBScript, this provides an alternate mechanism
+            (other than IActiveScriptParse or IPersist*) to add script procedures to the namespace.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParseProcedure32.ParseProcedureText(System.String,System.String,System.String,System.String,System.Object,System.String,System.UInt32,System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptProcedureFlags,System.Object@)">
+            <summary>
+            Parses the given code procedure and adds the procedure to the name space.
+            </summary>
+            <param name="code">The procedure text to evaluate. The interpretation of this string depends on
+            the scripting language.</param>
+            <param name="formalParameters">Formal parameter names for the procedure. The parameter names
+            must be separated with the appropriate delimiters for the scripting engine. The names should not
+            be enclosed in parentheses.</param>
+            <param name="procedureName">The procedure name to be parsed.</param>
+            <param name="itemName">The item name that gives the context in which the procedure is to be
+            evaluated. If this parameter is NULL, the code is evaluated in the scripting engine's global
+            context.</param>
+            <param name="context">The context object. This object is reserved for use in a debugging
+            environment, where such a context may be provided by the debugger to represent an active run-time
+            context. If this parameter is NULL, the engine uses pstrItemName to identify the context.</param>
+            <param name="delimeter">The end-of-procedure delimiter. When pstrCode is parsed from a stream of
+            text, the host typically uses a delimiter, such as two single quotation marks (''), to detect the
+            end of the procedure. This parameter specifies the delimiter that the host used, allowing the
+            scripting engine to provide some conditional primitive preprocessing (for example, replacing a
+            single quotation mark ['] with two single quotation marks for use as a delimiter). Exactly how
+            (and if) the scripting engine makes use of this information depends on the scripting engine.
+            Set this parameter to NULL if the host did not use a delimiter to mark the end of the procedure.</param>
+            <param name="sourceContextCookie">Application-defined value that is used for debugging purposes.</param>
+            <param name="startingLineNumber">Zero-based value that specifies which line the parsing will begin at.</param>
+            <param name="flags">Flags associated with the procedure.</param>
+            <param name="dispatch">The object containing the script's global methods and properties. If the
+            scripting engine does not support such an object, NULL is returned.</param>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParseProcedure64">
+            <summary>
+            If the Windows Script engine allows the source code text for procedures to be added to the script,
+            it implements the IActiveScriptParseProcedure interface. For interpreted scripting languages that
+            have no independent authoring environment, such as VBScript, this provides an alternate mechanism
+            (other than IActiveScriptParse or IPersist*) to add script procedures to the namespace.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptParseProcedure64.ParseProcedureText(System.String,System.String,System.String,System.String,System.Object,System.String,System.UInt64,System.UInt32,SassAndCoffee.JavaScript.ActiveScript.ScriptProcedureFlags,System.Object@)">
+            <summary>
+            Parses the given code procedure and adds the procedure to the name space.
+            </summary>
+            <param name="code">The procedure text to evaluate. The interpretation of this string depends on
+            the scripting language.</param>
+            <param name="formalParameters">Formal parameter names for the procedure. The parameter names
+            must be separated with the appropriate delimiters for the scripting engine. The names should not
+            be enclosed in parentheses.</param>
+            <param name="procedureName">The procedure name to be parsed.</param>
+            <param name="itemName">The item name that gives the context in which the procedure is to be
+            evaluated. If this parameter is NULL, the code is evaluated in the scripting engine's global
+            context.</param>
+            <param name="context">The context object. This object is reserved for use in a debugging
+            environment, where such a context may be provided by the debugger to represent an active run-time
+            context. If this parameter is NULL, the engine uses pstrItemName to identify the context.</param>
+            <param name="delimeter">The end-of-procedure delimiter. When pstrCode is parsed from a stream of
+            text, the host typically uses a delimiter, such as two single quotation marks (''), to detect the
+            end of the procedure. This parameter specifies the delimiter that the host used, allowing the
+            scripting engine to provide some conditional primitive preprocessing (for example, replacing a
+            single quotation mark ['] with two single quotation marks for use as a delimiter). Exactly how
+            (and if) the scripting engine makes use of this information depends on the scripting engine.
+            Set this parameter to NULL if the host did not use a delimiter to mark the end of the procedure.</param>
+            <param name="sourceContextCookie">Application-defined value that is used for debugging purposes.</param>
+            <param name="startingLineNumber">Zero-based value that specifies which line the parsing will begin at.</param>
+            <param name="flags">Flags associated with the procedure.</param>
+            <param name="dispatch">The object containing the script's global methods and properties. If the
+            scripting engine does not support such an object, NULL is returned.</param>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSiteInterruptPoll">
+            <summary>
+            The IActiveScriptSiteInterruptPoll interface allows a host to specify that a script should terminate.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptSiteInterruptPoll.QueryContinue">
+            <summary>
+            Allows a host to specify that a script should terminate.
+            </summary>
+            <remarks>Throw a COMException with HRESULT S_FALSE to indicate the call succeeded and the host
+            requests that the script terminate. Else you're signalling that the call succeeded and the host
+            permits the script to continue running.</remarks>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptStats">
+            <summary>
+            Allows a host to query the statistics of a running script. The host can use this information to determine
+            if script has taken too long to complete.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptStats.GetStat(SassAndCoffee.JavaScript.ActiveScript.ScriptStatistic,System.UInt32@,System.UInt32@)">
+            <summary>
+            Returns one of the standard script statistics.
+            </summary>
+            <param name="statId">Specifies which statistic to return.</param>
+            <param name="valueHi">The high 32 bits of a 64-bit unsigned integer representing the statistic.</param>
+            <param name="valueLow">The low 32 bits of a 64-bit unsigned integer representing the statistic.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptStats.GetStatEx(System.Guid,System.UInt32@,System.UInt32@)">
+            <summary>
+            Returns a custom script statistic.
+            </summary>
+            <param name="statId">Specifies which statistic to return.</param>
+            <param name="valueHi">The high 32 bits of a 64-bit unsigned integer representing the statistic.</param>
+            <param name="valueLow">The low 32 bits of a 64-bit unsigned integer representing the statistic.</param>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IActiveScriptStats.ResetStats">
+            <summary>
+            Resets the statistics for this script.
+            </summary>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.IBindEventHandler">
+            <summary>
+            Enables the caller to provide an object that handles a specified event handler.
+            </summary>
+        </member>
+        <member name="M:SassAndCoffee.JavaScript.ActiveScript.IBindEventHandler.BindHandler(System.String,System.Object)">
+            <summary>
+            Binds an event to an object.
+            </summary>
+            <param name="eventName">Specifies the event to handle.</param>
+            <param name="dispatch">Specifies the object to handle the event.</param>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptInfoFlags.None">
+            <summary>
+            Not a valid option.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptInfoFlags.IUnknown">
+            <summary>
+            Returns the IUnknown interface for this item.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptInfoFlags.ITypeInfo">
+            <summary>
+            Returns the ITypeInfo interface for this item.
+            </summary>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.ScriptInterruptFlags">
+            <summary>
+            Thread interruption options.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptInterruptFlags.None">
+            <summary>
+            No flags.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptInterruptFlags.Debug">
+            <summary>
+            If supported, enter the scripting engine's debugger at the current script execution point.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptInterruptFlags.RaiseException">
+            <summary>
+            If supported by the scripting engine's language, let the script handle the exception.
+            Otherwise, the script method is aborted and the error code is returned to the caller; that
+            is, the event source or macro invoker.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptItemFlags.None">
+            <summary>
+            No flags.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptItemFlags.IsVisible">
+            <summary>
+            Indicates that the item's name is available in the name space of the script, allowing
+            access to the properties, methods, and events of the item. By convention the properties
+            of the item include the item's children; therefore, all child object properties and
+            methods (and their children, recursively) will be accessible.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptItemFlags.IsSource">
+            <summary>
+            Indicates that the item sources events that the script can sink. Child objects
+            (properties of the object that are in themselves objects) can also source events to the
+            script. This is not recursive, but it provides a convenient mechanism for the common
+            case, for example, of creating a container and all of its member controls.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptItemFlags.GlobalMembers">
+            <summary>
+            Indicates that the item is a collection of global properties and methods associated
+            with the script. Normally, a scripting engine would ignore the object name (other than
+            for the purpose of using it as a cookie for the IActiveScriptSite.GetItemInfo method,
+            or for resolving explicit scoping) and expose its members as global variables and
+            methods. This allows the host to extend the library (run-time functions and so on)
+            available to the script. It is left to the scripting engine to deal with name conflicts
+            (for example, when two ScriptItemFlags.GlobalMembers items have methods of the same
+            name), although an error should not be returned because of this situation.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptItemFlags.IsPersistent">
+            <summary>
+            Indicates that the item should be saved if the scripting engine is saved. Similarly,
+            setting this flag indicates that a transition back to the initialized state should
+            retain the item's name and type information (the scripting engine must, however, release
+            all pointers to interfaces on the actual object).
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptItemFlags.CodeOnly">
+            <summary>
+            Indicates that the named item represents a code-only object, and that the host has no
+            IUnknown to be associated with this code-only object. The host only has a name for this
+            object. In object-oriented languages such as C++, this flag would create a class.
+            Not all languages support this flag.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptItemFlags.NoCode">
+            <summary>
+            Indicates that the item is simply a name being added to the script's name space, and
+            should not be treated as an item for which code should be associated. For example,
+            without this flag being set, VBScript will create a separate module for the named item,
+            and C++ might create a separate wrapper class for the named item.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptProcedureFlags.IsExpression">
+            <summary>
+            Indicates that the code in pstrCode is an expression that represents the return value of the procedure.
+            By default, the code can contain an expression, a list of statements, or anything else allowed in a
+            procedure by the script language.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptProcedureFlags.ImplicitThis">
+            <summary>
+            Indicates that the this pointer is included in the scope of the procedure.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptProcedureFlags.ImplicitParents">
+            <summary>
+            Indicates that the parents of the this pointer are included in the scope of the procedure.
+            </summary>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.ScriptState">
+            <summary>
+            Contains named constant values that specify the state of a scripting engine
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptState.Uninitialized">
+            <summary>
+            Script has just been created, but has not yet been initialized using an IPersist*
+            interface and IActiveScript.SetScriptSite.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptState.Started">
+            <summary>
+            Script can execute code, but is not yet sinking the events of objects added by
+            the IActiveScript.AddNamedItem method.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptState.Connected">
+            <summary>
+            Script is loaded and connected for sinking events.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptState.Disconnected">
+            <summary>
+            Script is loaded and has a run-time execution state, but is temporarily
+            disconnected from sinking events.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptState.Closed">
+            <summary>
+            Script has been closed. The scripting engine no longer works and returns errors
+            for most methods.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptState.Initialized">
+            <summary>
+            Script has been initialized, but is not running (connecting to other objects or
+            sinking events) or executing any code. Code can be queried for execution by
+            calling the IActiveScriptParse.ParseScriptText method.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptStatistic.StatementCount">
+            <summary>
+            Return the number of statements executed since the script started or the statistics were reset.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptTextFlags.IsVisible">
+            <summary>
+            Indicates that the script text should be visible (and, therefore, callable by name) as a global
+            method in the name space of the script.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptTextFlags.IsExpression">
+            <summary>
+            If the distinction between a computational expression and a statement is important but
+            syntactically ambiguous in the script language, this flag specifies that the scriptlet is to be
+            interpreted as an expression, rather than as a statement or list of statements. By default,
+            statements are assumed unless the correct choice can be determined from the syntax of the
+            scriptlet text.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptTextFlags.IsPersistent">
+            <summary>
+            Indicates that the code added during this call should be saved if the scripting engine is saved
+            (for example, through a call to IPersist*::Save), or if the scripting engine is reset by way of
+            a transition back to the initialized state. For more information about this state, see Script
+            Engine States.
+            </summary>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.ScriptThreadId">
+            <summary>
+            Signifies a special thread or class of threads.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptThreadId.Current">
+            <summary>
+            The currently executing thread.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptThreadId.Base">
+            <summary>
+            The base thread; that is, the thread in which the scripting engine was instantiated.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptThreadId.All">
+            <summary>
+            All threads.
+            </summary>
+        </member>
+        <member name="T:SassAndCoffee.JavaScript.ActiveScript.ScriptThreadState">
+            <summary>
+            Contains named constant values that specify the state of a thread in a scripting
+            engine. This enumeration is used by the IActiveScript::GetScriptThreadState method.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptThreadState.NotInScriipt">
+            <summary>
+            Specified thread is not currently servicing a scripted event, processing
+            immediately executed script text, or running a script macro.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptThreadState.Running">
+            <summary>
+            Specified thread is actively servicing a scripted event, processing
+            immediately executed script text, or running a script macro.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptTypeLibFlags.None">
+            <summary>
+            No flags.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptTypeLibFlags.IsControl">
+            <summary>
+            The type library describes an ActiveX control used by the host.
+            </summary>
+        </member>
+        <member name="F:SassAndCoffee.JavaScript.ActiveScript.ScriptTypeLibFlags.IsPersistent">
+            <summary>
+            Not documented.
+            </summary>
+        </member>
+    </members>
+</doc>
