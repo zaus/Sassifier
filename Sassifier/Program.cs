@@ -35,6 +35,13 @@ namespace Sassifier {
 			using (var compiler = new SassCompiler()) {
 				var compiled = compiler.Compile(path, compressed, dependencies.ToList());
 
+				// add prefix, etc
+				compiled = string.Format("{1}{0}{0}{2}"
+					, compressed ? string.Empty : Environment.NewLine
+					, compressed ? Properties.Settings.Default.PrefixCompressed : Properties.Settings.Default.Prefix.Replace("{{date}}", DateTime.Now.ToString())
+					, compiled
+					);
+
 				//write to file
 				var destination = string.Format("{1}{0}{2}.css"
 					, Path.DirectorySeparatorChar
